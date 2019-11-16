@@ -9,6 +9,10 @@
     width: 400px;
     height: 400px;
 }
+/* @keyframes animatedCharacter {
+    from{background-position-x:5px;}
+    to{background-position-x:-500px;}
+  } */
 .character{
     background: url('/sprites/spritesheet-megamen.png') 3px 6px !important;
     width: 40px;
@@ -17,9 +21,10 @@
     margin-left: 45px;
 }
 .characterMoveLeft{
-    background: url('/sprites/spritesheet-megamen.png') 1px -90px !important;
-    width: 35px;
-    height: 45px;
+    background: url('/sprites/spritesheet-megamen.png') 1px -90px ;
+    width: 30px;
+    height: 40px;
     margin-top: 280px;
     margin-left: 45px;
+    /* animation: animatedCharacter 1.5s steps(15)  infinite */
 }

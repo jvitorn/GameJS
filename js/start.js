@@ -1,9 +1,21 @@
+const element = document.getElementById('characterGame');
+var count = 0 ;
 function move(){
-    const element = document.getElementById('characterGame');
     element.classList.remove('character');
     console.log('removing to character');
     element.classList.add('characterMoveLeft');
+    count = count +10 ; 
+    element.style.marginLeft =+ count+"px";
+    element.style.backgroundPositionX= + count+"px";
     console.log('add from character Move left ');
+    console.log(count);
+}
+function stopMove(){
+    count = 0 ;
+    element.style.marginLeft = "45px";
+    element.classList.remove('characterMoveLeft');
+    element.classList.add('character');
+    element.style.marginLeft ="45px";
 }
 function tecla(){
     
@@ -21,7 +33,7 @@ function tecla(){
         move();
     }
     if(event.keyCode == 32){
-        alert('voce pressionou a tecla ESPACO');
+        stopMove();
     }
   }
 document.body.onkeypress = tecla;

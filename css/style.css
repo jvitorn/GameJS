@@ -1,5 +1,5 @@
 .game {
-    background-image: url('/backgrounds/background-stage-megamen.jpg') !important;
+    background-image: url('../backgrounds/background-stage-megamen.jpg') !important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13,18 +13,52 @@
     from{background-position-x:5px;}
     to{background-position-x:-500px;}
   } */
-.character{
+
+/* .character{
     background: url('/sprites/spritesheet-megamen.png') 3px 6px !important;
     width: 40px;
     height: 50px;
-    margin-top: 270px;
-    margin-left: 45px;
-}
-.characterMoveLeft{
-    background: url('/sprites/spritesheet-megamen.png') 1px -90px ;
-    width: 30px;
-    height: 40px;
     margin-top: 280px;
     margin-left: 45px;
+} */
+.character{
+    background: url('../sprites/spritesheet-megamen.png') ;
+    width: 40px;
+    height: 45px;
+    margin-top: 278px;
+    margin-left: 45px;
+    background-repeat: no-repeat;
+    border: 1px solid #d3d3d3;
     /* animation: animatedCharacter 1.5s steps(15)  infinite */
+}
+/* Frames from add in file js  */
+.frame-left1{
+    background-position:5px -90px !important;  
+}
+.frame-left2{
+    background-position:-30px -90px !important; 
+}
+.frame-left3{
+    background-position:-76px -90px !important;  
+}
+.frame-left4{
+    background-position:-120px -90px !important;  
+}
+.frame-left5{
+    background-position:-155px -90px !important;
+}
+.frame-left6{
+    background-position:-188px -90px !important;
+}
+.frame-left7{
+    background-position:-221px -90px !important;
+}
+.frame-left8{
+    background-position:-258px -90px !important;
+}
+.frame-left9{
+    background-position:-297px -90px !important;
+}
+.frame-left10{
+    background-position:-330px -90px !important;
 }

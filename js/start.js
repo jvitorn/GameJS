@@ -1,21 +1,30 @@
 const element = document.getElementById('characterGame');
+var position = 45;
+var countFrames = 1 ; 
 var count = 0 ;
-function move(){
-    element.classList.remove('character');
-    console.log('removing to character');
-    element.classList.add('characterMoveLeft');
-    count = count +10 ; 
-    element.style.marginLeft =+ count+"px";
-    element.style.backgroundPositionX= + count+"px";
-    console.log('add from character Move left ');
-    console.log(count);
+function moveLeft(){
+    //count interval
+        for (var interval = 100 ; interval <= 1000; interval+100 ){
+            setTimeout(function(){
+                element.classList.add("frame-left"+countFrames);
+                countFrames ++;
+                console.log("this is add in frame-left"+countFrames);
+            },interval);
+            setTimeout(function(){
+                element.classList.remove("frame-left"+countFrames);
+                console.log("this is remove in frame-left"+countFrames);
+            },interval);
+        }
+    console.log('entrou');
+    position = position + 10
+    element.style.marginLeft = position+"px"; 
 }
 function stopMove(){
     count = 0 ;
-    element.style.marginLeft = "45px";
-    element.classList.remove('characterMoveLeft');
+    position = 45;
+    element.classList.remove('frame-left'+countFrames);
     element.classList.add('character');
-    element.style.marginLeft ="45px";
+    element.style.marginLeft = position+"px";
 }
 function tecla(){
     
@@ -28,11 +37,11 @@ function tecla(){
     if(event.keyCode == 97 ){
         console.log('voce pressionou a tecla A');
     }
-    if(event.keyCode == 100){
+    if(event.keyCode == 100){//key 'd'
         console.log('voce pressionou a tecla D');
-        move();
+        moveLeft();
     }
-    if(event.keyCode == 32){
+    if(event.keyCode == 32){//key space
         stopMove();
     }
   }

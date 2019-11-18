@@ -7,14 +7,17 @@ function moveLeft(){
         for (var interval = 100 ; interval <= 1000; interval+100 ){
             setTimeout(function(){
                 element.classList.add("frame-left"+countFrames);
-                countFrames ++;
                 console.log("this is add in frame-left"+countFrames);
             },interval);
+            interval = interval + 100;
             setTimeout(function(){
                 element.classList.remove("frame-left"+countFrames);
                 console.log("this is remove in frame-left"+countFrames);
+                countFrames ++;
             },interval);
+            
         }
+        countFrames = 1;
     console.log('entrou');
     position = position + 10
     element.style.marginLeft = position+"px"; 

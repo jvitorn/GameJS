@@ -4,21 +4,26 @@ var countFrames = 1 ;
 var count = 0 ;
 function moveLeft(){
     //count interval
-        for (var interval = 100 ; interval <= 1000; interval+100 ){
+    if(countFrames <= 10){
+        for (var interval = 10 ; interval <= 100; interval+10 ){
             setTimeout(function(){
                 element.classList.add("frame-left"+countFrames);
                 console.log("this is add in frame-left"+countFrames);
             },interval);
-            interval = interval + 100;
+            interval = interval + 10;
             setTimeout(function(){
                 element.classList.remove("frame-left"+countFrames);
                 console.log("this is remove in frame-left"+countFrames);
                 countFrames ++;
             },interval);
-            
         }
+        console.log('entrou');
+    }
+    else{
         countFrames = 1;
-    console.log('entrou');
+        console.log('nao entrou');
+    }
+    countFrames = 1;
     position = position + 10
     element.style.marginLeft = position+"px"; 
 }
@@ -42,6 +47,7 @@ function tecla(){
     }
     if(event.keyCode == 100){//key 'd'
         console.log('voce pressionou a tecla D');
+        countFrames = 1;
         moveLeft();
     }
     if(event.keyCode == 32){//key space

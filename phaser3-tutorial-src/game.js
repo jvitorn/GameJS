@@ -72,6 +72,7 @@ function create(){
     this.physics.add.collider(player, plataforms);
 }
 function update(){
+    //inputs
     if (cursors.left.isDown)
     {
         player.setVelocityX(-160);

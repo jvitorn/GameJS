@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
+    <script>
+        var
+        // configurando a base de configuração do jogo  
+        config = {
+            type:Phaser.AUTO,
+            width:800,
+            height:600,
+            scene:{
+                preload:preload,
+                create:create,
+                update:update
+            }
+        }
+        // chamando uma nova instancia do game com as configurações criadas
+        game = new Phaser.Game(config);
+        // preload
+        function preload(){
+            // primeiro parametro - chave criada , segundo parametro onde esta localizado
+            this.load.image('sky','assets/sky.png');
+            this.load.image('ground','assets/platform.png');
+            this.load.image('star','assets/star.png');
+            this.load.image('bomb','assets/bomb.png');
+            this.load.spritesheet('dude','assets/dude.png',{frameWidth:32,frameHeight:48});
+        }
+        // create
+        function create(){
+            // adicionando as coordenadas x e y  e chamando a chave criada
+            this.add.image(400,300,'sky');
+            this.add.image(400,300,'star');
+        }
+        // update
+        function update(){
+
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

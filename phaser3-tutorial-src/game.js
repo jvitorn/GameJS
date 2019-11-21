@@ -22,6 +22,10 @@ const game = new Phaser.Game(config);
 var plataforms;
 var player;
 var cursors;
+var stars;
+var score = 0;
+var scoreText;
+var bombs;
 
 function preload(){
 
@@ -33,6 +37,8 @@ function preload(){
 }
 function create(){
     this.add.image(400,300,'sky');
+    // criando um novo texto 
+    scoreText = this.add.text(16,16,'score : 0',{fontSize:'32px',fill:'#000'});
     // criando grupos de plataformas
     plataforms =this.physics.add.staticGroup();
     plataforms.create(400,568,'ground').setScale(2).refreshBody();
@@ -66,10 +72,26 @@ function create(){
         frameRate: 10,
         repeat: -1
     }); 
+    //adicionando fisicas de grupo das estrelas
+    stars = this.physics.add.group({
+        key: 'star',
+        repeat: 11,
+        setXY: { x : 12, y: 0 , stepX: 70 }
+    });
+    stars.children.iterate(function(child){
+        child.setBounceX(Phaser.Math.FloatBetween(0.4,0.8));
+    });
+    bombs = this.physics.add.group();
     //pegando inputs
     cursors = this.input.keyboard.createCursorKeys();
     //adicionando uma fisica de colisao de players com as plataformas criadas
     this.physics.add.collider(player, plataforms);
+    // adicionando fisica de colisao de bombas com as plataformas criadas
+    this.physics.add.collider(bombs,plataforms);
+    // adicionando fisica de colisao de estrelas com as plataformas criadas
+    this.physics.add.collider(stars,plataforms);
+    this.physics.add.collider(player,bombs,hitBomb,null,this);
+    this.physics.add.overlap(player,stars,collectStar,null,this);
 }
 function update(){
     //inputs
@@ -96,4 +118,30 @@ function update(){
     {
         player.setVelocityY(-330);
     }
+   
+}
+// funçao de verificação de player com as estrelas
+function collectStar(player,star){
+    star.disableBody(true, true);
+    score+= 10
+    scoreText.setText('Score: '+score);
+
+    if(stars.countActive(true)===0){
+        stars.children.iterate(function(child){
+            child.enableBody(true,child.x,0,true,true);
+        });
+        let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+        let bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+    }
+
+}
+// funçao de verificação de player com bombas
+function hitBomb(player,bomb){
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    gameOver = true;
 }
